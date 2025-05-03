@@ -1,34 +1,58 @@
 {% extends 'base.html' %} 
+{% comment %} Page title here {% endcomment %}
 {% block title %} Home {% endblock title %}
+{% comment %} Active start {% endcomment %}
+{% block homeactive %} active {% endblock homeactive %}
+
+
+{% comment %} Home body start here  {% endcomment %}
 {% block body %}
-
-
-<div class="container my-3">  
-<h2> Contact MyCode Admin </h1>
-<form>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+     
+      <div class='container my-3'>
+        <div class="jumbotron" style="background-color: #f0f8ff;">
+            <h1 class="display-4">Welcome to MyCoder, world!</h1>
+            <p class="lead"> <h3> <strong> This is Home Page '🎉✌️✌️' </strong> </h3> Harum reiciendis neque cum tempore recusandae excepturi, vero magnam quae non deleniti, impedit assumenda rem debitis dignissimos vero esse dolore veritatis nesciunt aut, vero soluta alias excepturi modi ea? Repellat inventore natus unde architecto laborum, reprehenderit ex voluptate nostrum beatae rem veritatis officiis alias eaque  </p>
+            <hr class="my-4">
+            <p >  Debitis nemo voluptatibus ipsa amet facilis esse, ab maxime porro optio reiciendis animi odio tenetur hic, voluptates quia facilis ut ab nobis commodi recusandae in porro cumque, hic perspiciatis minima pariatur cum, molestias sint iste incidunt magnam excepturi nostrum recusandae aliquam. Facere voluptatum similique sequi iure, molestiae architecto in expedita autem aut sapiente mollitia impedit asperiores officia? Rem nisi voluptatum modi at sapiente molestiae sed. A harum fuga at officiis sequi ab aliquid eius. 
+                    
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/blog/" role="button">Learn more</a>
+            </p>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <div class='container my-3'>
+        <h3> Coding Post  </h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+                        <h3 class="mb-0">About post :)</h3>
+                        <div class="mb-1 text-body-secondary">Nov 12</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                        <a href="/blog/" class="icon-link gap-1 icon-link-hover stretched-link">
+                            Continue reading
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+                        <h3 class="mb-0">About post :)</h3>
+                        <div class="mb-1 text-body-secondary">Nov 12</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                        <a href="/blog/" class="icon-link gap-1 icon-link-hover stretched-link">
+                            Continue reading
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
 
 
 {% endblock body %}
