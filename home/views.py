@@ -27,13 +27,23 @@ def contact(request):
             messages.success(request,"you message has been successfully sent")    
     return render(request,'home/contact.html')
 
+# this is search logic
 def search(request):
-    query = request.GET['query']   
-    # allPosts = Post.objects.all()
-    allPosts = Post.objects.filter(title__icontains=query)
-    params = {'allPosts':allPosts}
-    return render (request, 'home/search.html',params)
+    query = request.GET.get('query')  # Use .get() to avoid KeyError
 
+    if len(query) > 78:
+        allPosts = Post.objects.none()
+    else:
+        allPostsTitle = Post.objects.filter(title__icontains=query)
+        allPostsContent = Post.objects.filter(content__icontains=query)
+        allPostsAuthor = Post.objects.filter(author__icontains=query)
+        allPosts = allPostsTitle.union(allPostsContent,allPostsAuthor)
+
+    if not allPosts:  # This works for both list and QuerySet
+        messages.warning(request, "No search result found, Please refine your query")
+
+    params = {'allPosts': allPosts, 'query': query}
+    return render(request, 'home/search.html', params)
 
     
 
