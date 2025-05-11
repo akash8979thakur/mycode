@@ -47,8 +47,9 @@ def search(request):
     params = {'allPosts': allPosts, 'query': query}
     return render(request, 'home/search.html', params)
 
-@csrf_exempt
 
+# Authentication APIS
+@csrf_exempt
 def handleSignup(request):
     if request.method=="POST":
         # Get the post parameters
@@ -60,7 +61,7 @@ def handleSignup(request):
         pass2=request.POST['pass2']
 
         # check for errorneous input
-        if len(username)<10:
+        if len(username) > 10:
             messages.error(request, " Your user name must be under 10 characters")
             return redirect('home')
 
@@ -103,3 +104,6 @@ def handleLogout(request):
     logout(request)
     messages.success(request, "Successfully logged out")
     return redirect('home')
+
+
+

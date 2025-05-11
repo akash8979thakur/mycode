@@ -120,6 +120,10 @@ from django.contrib.messages import constants as messages
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",    
+]
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
