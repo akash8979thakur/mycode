@@ -1,45 +1,58 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block title %} BlogPost {% endblock title %} 
+ {% block body %}
+ {% load humanize %}
 
-{% block title %} BlogPost {% endblock title %}
+<div class="container my-3">
+  <article class="container">
+    <h2 class="blog-post-title">{{post.title}}</h2>
+    <p class="blog-post-meta">
+      {{post.timeStamp | naturaltime}}
+      <a href="/about">{{post.author}}</a>
+    </p>
 
-{% block body %}
-<div class='container my-3'>
-    <article class="container">
-        <h2 class="blog-post-title">{{post.title}}</h2>
-        <p class="blog-post-meta">{{post.timeStamp}} <a href="/about">{{post.author}}</a></p>
-
-        <p> {{post.content|truncatechars:3000 }} </p>
-    </article>
-
+    <p>{{post.content|truncatechars:3000 }}</p>
+  </article>
 </div>
 <div class="container">
-    <h2> comments </h2>
+  <h2>comments ({{comments.count}})</h2>
+  <div class="my-2">
+    {% if user.is_authenticated %}
     <form action="/blog/postComment" method="post">
-        {% csrf_token %}
-
-        <div class="form-group">
-            <label for="inputEmail1">Post comments</label>
-            <input type="text" class="form-control" name="comment" placeholder="Enter comments here ">
-        </div>
-
-        <input type="hidden" name="postSno" value="{{post.sno}}">
-        <button type="submit" class="btn btn-primary">Submit</button>
-
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="inputEmail1"> <h5> Post comments </h5></label>
+        <input
+          type="text"
+          class="form-control"
+          name="comment"
+          placeholder="Enter comments here "
+        />
+      </div>
+      <input type="hidden" name="postSno" value="{{post.sno}}" />
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    {% else %}
+    <p>Please login to post a comments</p>
+    {% endif %}
+  </div>
 
-    {% for comment in comments %}
+  {% for comment in comments %}
 
-    <div class="row my-2">
-        <div class="col-md-1 "> <img class="rounded mx-auto d-block w-100 p-2" src="/static/img/user.png" alt="user">
-        </div>
-        <div class="col-md-11 "> <strong> {{comment.user.username}} </strong> at {{ comment.timestamp }}
-            <div> {{comment.comment}}</div>
-        </div>
+  <div class="row my-2">
+    <div class="col-md-1">
+      <img
+        class="rounded mx-auto d-block w-100 p-2"
+        src="/static/img/user.png"
+        alt="user"
+      />
     </div>
-    {% endfor %}
-
-
+    <div class="col-md-11">
+      <strong>{{comment.user.username}}</strong>
+      at {{ comment.timestamp }}
+      <div>{{comment.comment}}</div>
+    </div>
+  </div>
+  {% endfor %}
 </div>
-
 
 {% endblock body %}
